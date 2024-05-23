@@ -6,20 +6,53 @@ import { useState } from "react";
 function Soma(){
 
     const [contador, setContador] = useState(0);
+    const [numero1, setNumero1] = useState("");
+    const [numero2, setNumero2] = useState("");
+    const [resultado, setResulatdo] = useState(0);
 
-    function clicar(){
+
+
+    function IncrementarContador(){
         setContador(contador + 1);
-        console.log(contador);
+        
     }
+
+
+
+    function EscreverNumero1(e : any){
+        setNumero1(e.target.value);
+        
+    }
+
+    function somar(){
+        let soma = (parseInt(numero1) + parseInt(numero2));
+        setResulatdo(soma);
+    }
+
 
     return(
         <div>
             <h1>Soma</h1>
             <label>Numero 1: </label>
-            <input type="text"/><br/>
+            <input type="text" onChange={EscreverNumero1}/><br/>
+
             <label>Numero 2:</label>
-            <input type="text"/><br/>
-            <button onClick={clicar}>Calcular</button>
+            <input type="text" onChange={
+                (e : any) => {setNumero2(e.target.value)}
+                }/><br/>
+
+            <br></br>
+            <button onClick={IncrementarContador}>Contador</button>
+            <button onClick={somar}>Somar</button>
+            <p><h1>
+                { contador }
+                </h1>
+            </p>
+            <p>
+                <h1>
+                    { resultado }
+                </h1>
+            </p>
         </div>    
     );
 }
